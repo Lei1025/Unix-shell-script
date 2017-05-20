@@ -1,0 +1,72 @@
+Script started on Wed 25 Jan 2017 07:46:28 PM EST
+liu1115c@alpha:~/Desktop$ cat fibonacci.sh 
+#!/bin/bash
+#Written by Lei Liu, Jan 23, 2017
+#A bash-shell script to output fibonacci numbers
+
+if [ $# != 1 ]
+then
+	echo "Error: Please supply an integer."
+	echo "Usage: fibonacci <integer>"
+	exit 1
+elif [ $1 -eq 0 ]
+then
+	fn=0
+elif [ $1 == 1 ]
+then
+	fn=1
+elif [ $1 -ge 2 ]
+then
+	f0=0
+	f1=1	
+for (( i=1;i<$1;i++ ))
+	do 
+	fn=$((f0+f1))
+	f0=$f1
+	f1=$fn
+done
+fi
+echo "Fibonacci number of $1 is $fn"	
+liu1115c@alpha:~/Desktop$ cat minimize.sh 
+#!/bin/bash
+#Wrtten by Lei Liu, Jan 23, 2017
+#A bash-shell script to compress files
+
+if [ $# -eq 0 ]
+then	
+	echo "Error: Please enter the correct parameter"
+	echo "Usage: minimize <extension list>"
+	echo "Example: minimize *.doc *jpg"
+	exit 1
+fi
+
+total=0
+
+for file in $*
+do
+	echo "compressing......$file"
+	gzip $file
+	let total=$total+1	
+done
+echo "A total of $total files has been minimized"
+liu1115c@alpha:~/Desktop$ ./fino[K[Kno[K[Kbonacci.sh 
+Error: Please supply an integer.
+Usage: fibonacci <integer>
+liu1115c@alpha:~/Desktop$ ./fibonacci.sh 10
+Fibonacci number of 10 is 55
+liu1115c@alpha:~/Desktop$ ./minimize.sh 
+Error: Please enter the correct parameter
+Usage: minimize <extension list>
+Example: minimize *.doc *jpg
+liu1115c@alpha:~/Desktop$ ./minimize.sh *.txt *.doc *.jpg
+compressing......11.txt
+compressing......22.txt
+compressing......55.doc
+compressing......66.doc
+compressing......33.jpg
+compressing......44.jpg
+A total of 6 files has been minimized
+liu1115c@alpha:~/Desktop$ eit[K[Kxit
+exit
+
+Script done on Wed 25 Jan 2017 07:47:23 PM EST
